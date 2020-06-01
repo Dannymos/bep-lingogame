@@ -2,6 +2,8 @@
 ## Back-End Programming Lingogame
 
 [![Build Status](https://travis-ci.com/Dannymos/bep-lingogame.svg?token=gpoU2vNdexLmEGF8p9c4&branch=master)](https://travis-ci.com/Dannymos/bep-lingogame)
+[![Coverage Status](https://coveralls.io/repos/github/Dannymos/bep-lingogame/badge.svg?t=WsslOf)](https://coveralls.io/github/Dannymos/bep-lingogame)
+[![License](https://img.shields.io/badge/License-MIT-success)](https://img.shields.io/badge/License-MIT-success)
 [![Hotel](https://img.shields.io/badge/Hotel-Trivago-success)](https://img.shields.io/badge/Hotel-Trivago-success)
 
 ## Description
