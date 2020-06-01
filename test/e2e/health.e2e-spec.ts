@@ -1,14 +1,14 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { AppModule } from '../../src/modules/AppModule';
 import { INestApplication } from '@nestjs/common';
+import {HealthModule} from "../../src/modules/HealthModule/HealthModule";
 
-describe.skip('HealthController (e2e)', () => {
+describe('HealthController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [HealthModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -17,7 +17,7 @@ describe.skip('HealthController (e2e)', () => {
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/health')
       .expect(200)
       .expect('Healthy!');
   });

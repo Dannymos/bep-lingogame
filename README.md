@@ -4,11 +4,6 @@
 [![Build Status](https://travis-ci.com/Dannymos/bep-lingogame.svg?token=gpoU2vNdexLmEGF8p9c4&branch=master)](https://travis-ci.com/Dannymos/bep-lingogame)
 [![Hotel](https://img.shields.io/badge/Hotel-Trivago-success)](https://img.shields.io/badge/Hotel-Trivago-success)
 
-
-| Statements | Branches | Functions | Lines |
-| -----------|----------|-----------|-------|
-| ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
-
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
