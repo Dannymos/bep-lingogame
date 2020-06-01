@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {Word} from "../model/entities/Word.entity";
-import { IWord } from "../model/interfaces/IWord";
-import { IResult } from "../model/interfaces/IResult";
-import {WordResult} from "../model/WordResult";
+import { IWord } from "../contracts/IWord";
+import { IResult } from "../contracts/IResult";
+import {WordResult} from "../contracts/WordResult";
 
 @Injectable()
 export class WordService {

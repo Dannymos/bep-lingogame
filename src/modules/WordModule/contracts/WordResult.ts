@@ -1,5 +1,5 @@
-import {IResult} from "./interfaces/IResult";
-import {Word} from "./entities/Word.entity";
+import {IResult} from "./IResult";
+import {Word} from "../model/entities/Word.entity";
 
 export class WordResult implements IResult {
     ok: boolean;

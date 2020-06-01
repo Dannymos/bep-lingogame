@@ -1,19 +1,17 @@
 import { Module } from '@nestjs/common';
-import { HealthController } from '../controllers/HealthController';
-import { HealthService } from '../services/HealthService';
 import { DatabaseModule } from "./DatabaseModule";
-import { WordRegistrationModule } from "./WordRegistrationModule";
+import { WordModule } from "./WordModule/WordModule";
 import { Connection } from "typeorm";
+import { HealthModule } from "./HealthModule/HealthModule";
 
 @Module({
   imports: [
       DatabaseModule,
-      WordRegistrationModule
+      WordModule,
+      HealthModule
   ],
-  controllers: [
-      HealthController
-  ],
-  providers: [HealthService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {
     constructor(private connection: Connection) {

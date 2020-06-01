@@ -8,7 +8,7 @@ import { WordService } from "../services/WordService";
 import {Word} from "../model/entities/Word.entity";
 
 @Controller()
-export class WordRegistrationController {
+export class WordController {
     constructor(private wordService: WordService) {}
 
     @Post('/word')
