@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "Lingogame-WebApp",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "BEP Lingogame WebApp",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -23,9 +23,16 @@
     "@nestjs/common": "^7.0.11",
     "@nestjs/core": "^7.0.11",
     "@nestjs/platform-express": "^7.0.11",
+    "@nestjs/swagger": "^4.5.9",
+    "@nestjs/typeorm": "^7.1.0",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.2",
+    "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "swagger-ui-express": "^4.1.4",
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.1.5",
@@ -55,7 +62,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "test",
     "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
