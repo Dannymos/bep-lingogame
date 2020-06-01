@@ -13,11 +13,11 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "make-badges": "./node_modules/.bin/jest-badges-readme"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.11",
@@ -38,6 +38,7 @@
     "@nestjs/cli": "^7.1.5",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.11",
+    "@olavoparno/jest-badges-readme": "^1.4.1",
     "@types/express": "^4.17.6",
     "@types/jest": "^25.2.2",
     "@types/node": "^14.0.1",
@@ -71,6 +72,11 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
   }
 }
