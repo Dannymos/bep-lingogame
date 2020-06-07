@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {HttpException, HttpStatus, Inject, Injectable, Logger} from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";
@@ -7,6 +7,9 @@ import { Language } from "../model/entities/Language.entity";
 
 @Injectable()
 export class WordService {
+
+    @Inject(Logger)
+    private logger: Logger;
 
     @InjectRepository(Word)
     private wordsRepository: Repository<Word>;
@@ -20,18 +23,26 @@ export class WordService {
         return await this.wordsRepository.save(word);
     }
 
-    public async getWord(language: Language, exclude?: Array<Word>, length: number = 5): Promise<Word> {
+    public async getWord(language: Language,  length: number = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {
         const textToExclude = exclude.map((word) => word.text);
         const languageId = language.id;
+        const query = await this.wordsRepository.createQueryBuilder()
+            .where("CHAR_LENGTH(word.text) = :length", { length })
+            .andWhere("word.languageId = :languageId", { languageId });
+        if(textToExclude.length > 0) {
+            query.andWhere("word.text NOT IN (:...textToExclude)", { textToExclude });
+        }
+        this.logger.debug(query.getQuery());
 
-        const result = await this.wordsRepository.createQueryBuilder()
-            .select("word")
-            .from(Word, "word")
-            .where("word.text != IN (:...textToExclude)", { textToExclude })
-            .andWhere("CHAR_LENGTH(word.text) = :length", { length })
-            .andWhere("languageId = :languageId", { languageId })
-            .getOne();
+        const result = await query.getOne();
 
-        return new Word(result.text, language);
+        if(result == null) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'No word found!'
+            }, HttpStatus.NOT_FOUND);
+        }
+
+        return result;
     }
 }
