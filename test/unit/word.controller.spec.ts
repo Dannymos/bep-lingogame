@@ -6,7 +6,7 @@ import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
 import {HttpException, HttpStatus, Logger} from "@nestjs/common";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { mockRepository } from "../mocks/MockRepository";
+import { mockWordRepository } from "../mocks/MockWordRepository";
 import { mockLogger } from '../mocks/MockLogger';
 
 describe('WordController', () => {
@@ -18,7 +18,7 @@ describe('WordController', () => {
             controllers: [WordController],
             providers: [
                 WordService,
-                { provide: getRepositoryToken(Word), useClass: mockRepository },
+                { provide: getRepositoryToken(Word), useClass: mockWordRepository },
                 { provide: Logger, useClass: mockLogger }
             ],
         }).compile();

@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { WordDto } from "../model/dto/Word.dto";
 import { WordService } from "../services/WordService";
-import { Word } from "../model/entities/Word.entity";
 
 @Controller('word')
 export class WordController {
@@ -19,12 +18,8 @@ export class WordController {
 
     @Post()
     async create(@Body() dto: WordDto): Promise<string> {
-        const word = new Word(
-            dto.text,
-            dto.language
-        );
         try {
-            const result = await this.wordService.create(word);
+            const result = await this.wordService.create(dto);
             return JSON.stringify(result);
         } catch(exception) {
             this.logger.error(exception);

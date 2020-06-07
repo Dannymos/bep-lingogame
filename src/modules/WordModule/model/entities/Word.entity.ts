@@ -1,10 +1,10 @@
 import { Language } from './Language.entity'
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Word {
 
-    constructor(text: string, language: Language, id?: number) {
+    constructor(text: string, language?: Language, id?: number) {
         this.id = id;
         this.text = text;
         this.language = language;
