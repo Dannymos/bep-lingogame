@@ -1,15 +1,15 @@
-import {HttpException, HttpStatus, Inject, Injectable, Logger} from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";
 import { IWord } from "../contracts/IWord";
-import { Language } from "../model/entities/Language.entity";
+import { LanguageService } from "./LanguageService";
 
 @Injectable()
 export class WordService {
 
-    @Inject(Logger)
-    private logger: Logger;
+    @Inject(LanguageService)
+    private languageService: LanguageService;
 
     @InjectRepository(Word)
     private wordsRepository: Repository<Word>;
@@ -23,9 +23,11 @@ export class WordService {
         return await this.wordsRepository.save(word);
     }
 
-    public async getWord(language: Language,  length: number = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {
+    public async getRandomWord(languageSlug: string,  length: number = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {
         const textToExclude = exclude.map((word) => word.text);
+        const language = await this.languageService.getLanguageBySlug(languageSlug);
         const languageId = language.id;
+
         const query = await this.wordsRepository.createQueryBuilder()
             .where("CHAR_LENGTH(word.text) = :length", { length })
             .andWhere("word.languageId = :languageId", { languageId });

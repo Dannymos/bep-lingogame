@@ -6,12 +6,13 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
 import {IWord} from "../../src/modules/WordModule/contracts/IWord";
+import {mockLanguageRepository} from "../mocks/MockLanguageRepository";
 
 describe('Word Module (e2e)', () => {
     let app: INestApplication;
 
     beforeAll(async () => {
-        const mockRepo = {
+        const mockWordRepo = {
             save: (word: Word) => {
                 word.id = 1;
                 return word;
@@ -24,7 +25,9 @@ describe('Word Module (e2e)', () => {
         const moduleFixture = await Test.createTestingModule({
             imports: [WordModule],
         }).overrideProvider(getRepositoryToken(Word))
-            .useValue(mockRepo)
+            .useValue(mockWordRepo)
+            .overrideProvider(getRepositoryToken(Language))
+            .useValue(mockLanguageRepository)
             .compile();
 
         app = moduleFixture.createNestApplication();

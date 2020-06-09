@@ -6,7 +6,8 @@ import { Language } from "../../src/modules/WordModule/model/entities/Language.e
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { WordDto } from "../../src/modules/WordModule/model/dto/Word.dto";
 import { mockWordRepository } from "../mocks/MockWordRepository";
-import {Logger} from "@nestjs/common";
+import { LanguageService } from "../../src/modules/WordModule/services/LanguageService";
+import { mockLanguageService } from "../mocks/MockLanguageService";
 
 describe('WordService', () => {
     let wordService: WordService;
@@ -15,8 +16,8 @@ describe('WordService', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 WordService,
-                Logger,
-                { provide: getRepositoryToken(Word), useClass: mockWordRepository },
+                { provide: LanguageService, useClass: mockLanguageService },
+                { provide: getRepositoryToken(Word), useClass: mockWordRepository }
             ]
         }).compile();
 
@@ -47,10 +48,9 @@ describe('WordService', () => {
 
     describe('getWord', () => {
         it('should return a 5 letter word when no length or exclusion is provided"',async () => {
-
             const mockLanguage = new Language('TE', 'testlanguage');
-            const exclude = new Array<Word>();
-            const result = await wordService.getWord(mockLanguage);
+
+            const result = await wordService.getRandomWord(mockLanguage.slug);
 
             expect(result).toBeInstanceOf(Word);
             expect(result.language).toBeInstanceOf(Language);

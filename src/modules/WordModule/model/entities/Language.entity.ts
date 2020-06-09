@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import {Word} from "./Word.entity";
+import { Word } from "./Word.entity";
 
 @Entity()
 export class Language {

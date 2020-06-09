@@ -1,7 +1,6 @@
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { IWord } from "../../src/modules/WordModule/contracts/IWord";
-import {Language} from "../../src/modules/WordModule/model/entities/Language.entity";
-import {SelectQueryBuilder} from "typeorm";
+import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
 
 export const mockWordRepository = jest.fn(() => ({
     metadata: {
