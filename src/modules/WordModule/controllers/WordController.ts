@@ -1,7 +1,10 @@
 import {
     Body,
-    Controller, HttpException, HttpStatus,
-    Inject, Logger,
+    Controller,
+    HttpException,
+    HttpStatus,
+    Inject,
+    Logger,
     Post
 } from '@nestjs/common';
 import { WordDto } from "../model/dto/Word.dto";
@@ -14,12 +17,12 @@ export class WordController {
     private logger: Logger;
 
     @Inject(WordService)
-    private wordService: WordService
+    private wordService: WordService;
 
     @Post()
     async create(@Body() dto: WordDto): Promise<string> {
         try {
-            const result = await this.wordService.create(dto);
+            const result = await this.wordService.createFromDto(dto);
             return JSON.stringify(result);
         } catch(exception) {
             this.logger.error(exception);

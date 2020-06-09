@@ -1,9 +1,9 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {BadRequestException, HttpException, HttpStatus, Inject, Injectable} from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";
-import { IWord } from "../contracts/IWord";
 import { LanguageService } from "./LanguageService";
+import { WordDto } from "../model/dto/Word.dto";
 
 @Injectable()
 export class WordService {
@@ -14,10 +14,11 @@ export class WordService {
     @InjectRepository(Word)
     private wordsRepository: Repository<Word>;
 
-    public async create(source: IWord): Promise<Word> {
+    public async createFromDto(dto: WordDto): Promise<Word> {
+        const language = await this.languageService.getLanguageBySlug(dto.language);
         const word = this.wordsRepository.create({
-            text: source.text,
-            language: source.language
+            text: dto.text,
+            language: language
         });
 
         return await this.wordsRepository.save(word);

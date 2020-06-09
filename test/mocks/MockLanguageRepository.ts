@@ -9,8 +9,8 @@ export const mockLanguageRepository = jest.fn(() => ({
     createQueryBuilder: jest.fn(() => ({
         where: jest.fn(()=> ({
             getOne: jest.fn()
-                .mockImplementationOnce(() => {
-                    return new Language('TE', 'TESTLANGUAGE')
+                .mockImplementation(() => {
+                    return new Language('TE', "testlanguage");
                 })
         }))
     }))

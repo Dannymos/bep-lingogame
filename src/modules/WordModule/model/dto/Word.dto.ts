@@ -1,21 +1,25 @@
-import {IsString, IsAlpha, IsNotEmpty, IsLowercase} from "class-validator";
-import { Language } from "../entities/Language.entity";
+import {IsString, IsAlpha, IsNotEmpty, IsLowercase, MinLength, MaxLength, IsUppercase} from "class-validator";
 
 export class WordDto {
 
-    constructor(text: string, language: Language) {
+    constructor(text: string, language: string) {
         this.text = text;
         this.language = language;
     }
 
+    @IsNotEmpty()
     @IsAlpha()
     @IsString()
     @IsLowercase()
+    @MinLength(5)
+    @MaxLength(7)
     text: string
 
-    /*TODO:
-    * ADD RULE THAT LANGUAGE MUST EXIST IN DB
-     */ 
     @IsNotEmpty()
-    language: Language;
+    @IsAlpha()
+    @IsString()
+    @IsUppercase()
+    @MinLength(2)
+    @MaxLength(2)
+    language: string;
 }

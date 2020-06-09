@@ -28,9 +28,9 @@ describe('WordService', () => {
         it('should create a new Word and return said Word"',async () => {
 
             const mockLanguage = new Language('TE', 'testlanguage');
-            const mockWord = new Word('aword', mockLanguage);
+            const mockWord = new WordDto('aword', mockLanguage.slug);
 
-            const result = await wordService.create(mockWord);
+            const result = await wordService.createFromDto(mockWord);
 
             expect(result).toBeInstanceOf(Word);
         });
@@ -38,9 +38,9 @@ describe('WordService', () => {
         it('should create a new Word from DTO and return said Word"',async () => {
 
             const mockLanguage = new Language('TE', 'testlanguage');
-            const mockWordDto = new WordDto('aword', mockLanguage);
+            const mockWordDto = new WordDto('aword', mockLanguage.slug);
 
-            const result = await wordService.create(mockWordDto);
+            const result = await wordService.createFromDto(mockWordDto);
 
             expect(result).toBeInstanceOf(Word);
         });

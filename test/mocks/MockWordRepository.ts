@@ -1,6 +1,6 @@
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
-import { IWord } from "../../src/modules/WordModule/contracts/IWord";
 import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
+import { WordDto } from "../../src/modules/WordModule/model/dto/Word.dto";
 
 export const mockWordRepository = jest.fn(() => ({
     metadata: {
@@ -11,10 +11,10 @@ export const mockWordRepository = jest.fn(() => ({
         word.id = 1;
         return word;
     }),
-    create: jest.fn((source: IWord) => {
+    create: jest.fn((word: Word) => {
         return new Word(
-            source.text,
-            source.language
+            word.text,
+            word.language
         );
     }),
     createQueryBuilder: jest.fn(() => ({
@@ -22,7 +22,7 @@ export const mockWordRepository = jest.fn(() => ({
             andWhere: jest.fn(() => ({
                 getOne: jest.fn()
                     .mockImplementationOnce(() => {
-                        const language = new Language('TE', 'TESTLANGUAGE')
+                        const language = new Language('TE', 'testlanguage')
                         return new Word('aword', language)
                     })
             }))

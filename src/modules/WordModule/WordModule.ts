@@ -18,6 +18,9 @@ import { Language } from "./model/entities/Language.entity";
         LanguageService,
         Logger
     ],
+    exports: [
+        WordService
+    ]
 })
 
 export class WordModule {}

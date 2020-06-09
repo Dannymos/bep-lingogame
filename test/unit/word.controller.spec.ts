@@ -35,9 +35,9 @@ describe('WordController', () => {
         it('should return newly created Word', async () => {
             const mockLanguage = new Language('TE', 'testlanguage');
             const mockWord = new Word('aword', mockLanguage);
-            const mockWordDto = new WordDto('aword', mockLanguage);
+            const mockWordDto = new WordDto('aword', mockLanguage.slug);
 
-            jest.spyOn(wordService, 'create').mockImplementation(() => Promise.resolve(mockWord));
+            jest.spyOn(wordService, 'createFromDto').mockImplementation(() => Promise.resolve(mockWord));
 
 
             const response = await wordController.create(mockWordDto);
@@ -46,9 +46,9 @@ describe('WordController', () => {
 
         it('should throw HttpException when service returns an error', async () => {
             const mockLanguage = new Language('TE', 'testlanguage');
-            const mockWordDto = new WordDto('aword', mockLanguage);
+            const mockWordDto = new WordDto('aword', mockLanguage.slug);
 
-            jest.spyOn(wordService, 'create').mockImplementation(() => {
+            jest.spyOn(wordService, 'createFromDto').mockImplementation(() => {
                 throw new HttpException({}, HttpStatus.BAD_REQUEST);
             });
 

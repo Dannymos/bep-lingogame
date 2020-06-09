@@ -10,10 +10,7 @@ export class LanguageService {
     private languageRepository: Repository<Language>;
 
     public async getLanguageBySlug(slug: string): Promise<Language> {
-        const query = await this.languageRepository.createQueryBuilder()
-            .where("language.slug = :slug", { slug });
-
-        const result = await query.getOne();
+        const result = await this.languageRepository.createQueryBuilder().where("language.slug = :slug", { slug }).getOne();
 
         if(result == null) {
             throw new HttpException({
