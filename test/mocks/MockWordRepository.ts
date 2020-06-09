@@ -19,16 +19,13 @@ export const mockWordRepository = jest.fn(() => ({
         );
     }),
     createQueryBuilder: jest.fn(() => ({
-        select: jest.fn(() => ({
-            from: jest.fn(() => ({
-                where: jest.fn(()=> ({
-                    andWhere: jest.fn((length: number) => ({
-                        andWhere: jest.fn(() => ({
-                            getOne: jest.fn()
-                                .mockImplementationOnce(() => { return new Word('aword')})
-                        }))
-                    }))
-                }))
+        where: jest.fn(()=> ({
+            andWhere: jest.fn(() => ({
+                getOne: jest.fn()
+                    .mockImplementationOnce(() => {
+                        const language = new Language('TE', 'TESTLANGUAGE')
+                        return new Word('aword', language)
+                    })
             }))
         }))
     }))

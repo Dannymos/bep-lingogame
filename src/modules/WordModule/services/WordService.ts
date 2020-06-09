@@ -32,7 +32,6 @@ export class WordService {
         if(textToExclude.length > 0) {
             query.andWhere("word.text NOT IN (:...textToExclude)", { textToExclude });
         }
-        this.logger.debug(query.getQuery());
 
         const result = await query.getOne();
 

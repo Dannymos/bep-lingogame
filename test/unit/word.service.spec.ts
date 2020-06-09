@@ -6,6 +6,7 @@ import { Language } from "../../src/modules/WordModule/model/entities/Language.e
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { WordDto } from "../../src/modules/WordModule/model/dto/Word.dto";
 import { mockWordRepository } from "../mocks/MockWordRepository";
+import {Logger} from "@nestjs/common";
 
 describe('WordService', () => {
     let wordService: WordService;
@@ -14,6 +15,7 @@ describe('WordService', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 WordService,
+                Logger,
                 { provide: getRepositoryToken(Word), useClass: mockWordRepository },
             ]
         }).compile();
@@ -48,10 +50,10 @@ describe('WordService', () => {
 
             const mockLanguage = new Language('TE', 'testlanguage');
             const exclude = new Array<Word>();
-            const result = await wordService.getWord(mockLanguage, exclude);
+            const result = await wordService.getWord(mockLanguage);
 
             expect(result).toBeInstanceOf(Word);
-            expect(result.language).toBe(mockLanguage);
+            expect(result.language).toBeInstanceOf(Language);
             expect(result.text.length).toBe(5);
         });
     });
