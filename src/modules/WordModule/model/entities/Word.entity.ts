@@ -18,4 +18,18 @@ export class Word {
 
     @ManyToOne(type => Language, language => language.words)
     language: Language;
+
+    public containsCharacter(char): boolean {
+        return this.text.includes(char);
+    }
+
+    public containsCharacterInSamePosition(char, index): boolean {
+        const characters = this.text.split('');
+
+        if(characters[index] === char) {
+            return true;
+        }
+
+        return false;
+    }
 }
