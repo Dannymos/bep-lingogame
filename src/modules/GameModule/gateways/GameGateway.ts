@@ -8,9 +8,9 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { GameSessionManager } from "../services/GameSessionManager";
-import {BadRequestException, Inject, Logger} from "@nestjs/common";
-import { GuessMessage } from "../contracts/GuessMessage";
-import { GuessResponse } from "../contracts/GuessResponse";
+import { Inject, Logger } from "@nestjs/common";
+import { GuessMessage } from "../model/contracts/GuessMessage";
+import { GuessResponse } from "../model/contracts/GuessResponse";
 import { GameService } from "../services/GameService";
 
 @WebSocketGateway()

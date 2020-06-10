@@ -1,11 +1,11 @@
 import { Game } from "../model/Game";
-import { GuessMessage } from "../contracts/GuessMessage";
+import { GuessMessage } from "../model/contracts/GuessMessage";
 import { WordService } from "../../WordModule/services/WordService";
 import { Inject, Logger } from "@nestjs/common";
-import { CharResult } from "../contracts/CharResult";
+import { CharResult } from "../model/contracts/CharResult";
 import { Word } from "../../WordModule/model/entities/Word.entity";
-import { GuessResponse } from "../contracts/GuessResponse";
-import { CharResultStatus } from "../contracts/CharResultStatus";
+import { GuessResponse } from "../model/contracts/GuessResponse";
+import { CharResultStatus } from "../model/contracts/CharResultStatus";
 
 export class GameService {
 
@@ -59,8 +59,8 @@ export class GameService {
         const incorrectCharResults = charResults.filter(charResult => {
             return charResult.resultStatus === CharResultStatus.correctWithoutPosition || charResult.resultStatus === CharResultStatus.incorrect;
         });
-
-        if(incorrectCharResults.length > 0) {
+        console.log(incorrectCharResults.length > 0);
+        if(incorrectCharResults.length === 0) {
             this.logger.log(`Guess: '${guess}' correct!`);
             result = new GuessResponse(true, guess, charResults);
         } else {

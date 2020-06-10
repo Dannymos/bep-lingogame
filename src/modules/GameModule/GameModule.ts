@@ -8,7 +8,7 @@ import { WordModule } from "../WordModule/WordModule";
 @Module({
     imports: [
         WordModule,
-        TypeOrmModule.forFeature([  ])
+        TypeOrmModule.forFeature([])
     ],
     controllers: [
 
