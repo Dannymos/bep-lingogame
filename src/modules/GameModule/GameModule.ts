@@ -1,17 +1,14 @@
 import { Logger, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { GameGateway } from "./gateways/GameGateway";
 import { GameSessionManager } from "./services/GameSessionManager";
 import { GameService } from "./services/GameService";
 import { WordModule } from "../WordModule/WordModule";
+import { HighscoreModule } from "../HighscoreModule/HighscoreModule";
 
 @Module({
     imports: [
         WordModule,
-        TypeOrmModule.forFeature([])
-    ],
-    controllers: [
-
+        HighscoreModule
     ],
     providers: [
         GameSessionManager,

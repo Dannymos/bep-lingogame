@@ -16,15 +16,14 @@ export class Word {
     @Column({ unique: true})
     text: string;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    @ManyToOne(type => Language, language => language.words)
+    @ManyToOne(() => Language, language => language.words)
     language: Language;
 
-    public containsCharacter(char): boolean {
+    public containsCharacter(char: string): boolean {
         return this.text.includes(char);
     }
 
-    public containsCharacterInSamePosition(char, index): boolean {
+    public containsCharacterInSamePosition(char: string, index: number): boolean {
         const characters = this.text.split('');
 
         return characters[index] === char;

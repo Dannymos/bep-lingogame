@@ -2,7 +2,7 @@ import { IsAlpha, IsLowercase, IsNotEmpty, IsString, MaxLength, MinLength } from
 
 export class GuessMessage {
 
-    public clientId: string;
+    private _clientId: string;
 
     @IsNotEmpty()
     @IsAlpha()
@@ -10,6 +10,21 @@ export class GuessMessage {
     @IsLowercase()
     @MinLength(5)
     @MaxLength(7)
-    public guess: string;
+    private _guess: string;
 
+    get guess(): string {
+        return this._guess;
+    }
+
+    set guess(value: string) {
+        this._guess = value;
+    }
+
+    get clientId(): string {
+        return this._clientId;
+    }
+
+    set clientId(value: string) {
+        this._clientId = value;
+    }
 }

@@ -19,7 +19,6 @@ export class Language {
     @Column({ unique: true})
     name: string;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    @OneToMany(type => Word, word => word.language)
+    @OneToMany(() => Word, word => word.language)
     words: Word[]
 }

@@ -1,5 +1,5 @@
 export enum CharResultStatus {
-    incorrect,
-    correctWithoutPosition,
-    correct
+    absent = "absent",
+    present = "present",
+    correct = "correct"
 }

@@ -1,13 +1,36 @@
 export class NewRoundInfo {
+
     constructor(length: number, firstCharacter: string, roundNumber: number) {
-        this.wordLength = length;
-        this.firstCharacter = firstCharacter;
-        this.roundNumber = roundNumber;
+        this._wordLength = length;
+        this._firstCharacter = firstCharacter;
+        this._roundNumber = roundNumber;
     }
 
-    private wordLength: number;
+    private _wordLength: number;
 
-    private firstCharacter: string;
+    private _firstCharacter: string;
 
-    private roundNumber: number;
+    private _roundNumber: number;
+
+    get roundNumber(): number {
+        return this._roundNumber;
+    }
+
+    set roundNumber(value: number) {
+        this._roundNumber = value;
+    }
+    get firstCharacter(): string {
+        return this._firstCharacter;
+    }
+
+    set firstCharacter(value: string) {
+        this._firstCharacter = value;
+    }
+    get wordLength(): number {
+        return this._wordLength;
+    }
+
+    set wordLength(value: number) {
+        this._wordLength = value;
+    }
 }

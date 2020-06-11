@@ -1,19 +1,63 @@
 import { CharResult } from "./CharResult";
 import { NewRoundInfo } from "./NewRoundInfo";
+import { GameStatus } from "./GameStatus";
+import { GuessResponseStatus } from "./GuessResponseStatus";
 
 export class GuessResponse {
 
-    constructor(correct: boolean, guess: string, charResults: Array<CharResult>) {
-        this.correct = correct;
-        this.guess = guess;
-        this.feedback = charResults;
+    constructor(status: GuessResponseStatus, guess: string, charResults: Array<CharResult>) {
+        this._status = status;
+        this._guess = guess;
+        this._feedback = charResults;
+        this._gameStatus = GameStatus.active;
     }
 
-    public correct: boolean;
+    private _status: GuessResponseStatus;
 
-    public newRoundInfo?: NewRoundInfo;
+    private _newRoundInfo?: NewRoundInfo;
 
-    private guess: string;
+    private _guess: string;
 
-    private feedback: Array<CharResult>;
+    private _feedback: Array<CharResult>;
+
+    private _gameStatus: GameStatus;
+
+    get feedback(): Array<CharResult> {
+        return this._feedback;
+    }
+
+    set feedback(value: Array<CharResult>) {
+        this._feedback = value;
+    }
+
+    get newRoundInfo(): NewRoundInfo {
+        return this._newRoundInfo;
+    }
+
+    set newRoundInfo(value: NewRoundInfo) {
+        this._newRoundInfo = value;
+    }
+    get guess(): string {
+        return this._guess;
+    }
+
+    set guess(value: string) {
+        this._guess = value;
+    }
+
+    get gameStatus(): GameStatus {
+        return this._gameStatus;
+    }
+
+    set gameStatus(value: GameStatus) {
+        this._gameStatus = value;
+    }
+
+    get status(): GuessResponseStatus {
+        return this._status;
+    }
+
+    set status(value: GuessResponseStatus) {
+        this._status = value;
+    }
 }
