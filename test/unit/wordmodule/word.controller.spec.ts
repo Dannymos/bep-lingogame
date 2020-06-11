@@ -1,15 +1,15 @@
 import { Test } from '@nestjs/testing';
-import { WordController } from "../../src/modules/WordModule/controllers/WordController";
-import { WordService } from "../../src/modules/WordModule/services/WordService";
-import { WordDto } from "../../src/modules/WordModule/model/dto/Word.dto";
-import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
-import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
+import { WordController } from "../../../src/modules/WordModule/controllers/WordController";
+import { WordService } from "../../../src/modules/WordModule/services/WordService";
+import { WordDto } from "../../../src/modules/WordModule/model/dto/Word.dto";
+import { Word } from "../../../src/modules/WordModule/model/entities/Word.entity";
+import { Language } from "../../../src/modules/WordModule/model/entities/Language.entity";
 import { HttpException, HttpStatus, Logger } from "@nestjs/common";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { mockWordRepository } from "../mocks/MockWordRepository";
-import { mockLogger } from '../mocks/MockLogger';
-import {mockLanguageService} from "../mocks/MockLanguageService";
-import { LanguageService } from "../../src/modules/WordModule/services/LanguageService";
+import { mockWordRepository } from "../../mocks/MockWordRepository";
+import { mockLogger } from '../../mocks/MockLogger';
+import {mockLanguageService} from "../../mocks/MockLanguageService";
+import { LanguageService } from "../../../src/modules/WordModule/services/LanguageService";
 
 describe('WordController', () => {
     let wordController: WordController;

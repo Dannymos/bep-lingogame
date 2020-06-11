@@ -1,4 +1,4 @@
-import {CharResultStatus} from "./CharResultStatus";
+import { CharResultStatus } from "./CharResultStatus";
 
 export class CharResult {
 

@@ -1,4 +1,5 @@
 import { CharResult } from "./CharResult";
+import { NewRoundInfo } from "./NewRoundInfo";
 
 export class GuessResponse {
 
@@ -10,9 +11,9 @@ export class GuessResponse {
 
     public correct: boolean;
 
+    public newRoundInfo?: NewRoundInfo;
+
     private guess: string;
 
     private feedback: Array<CharResult>;
-
-    private newWordLength?: number;
 }

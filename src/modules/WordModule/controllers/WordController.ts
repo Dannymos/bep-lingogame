@@ -20,7 +20,7 @@ export class WordController {
     private wordService: WordService;
 
     @Post()
-    async create(@Body() dto: WordDto): Promise<string> {
+    public async create(@Body() dto: WordDto): Promise<string> {
         try {
             const result = await this.wordService.createFromDto(dto);
             return JSON.stringify(result);

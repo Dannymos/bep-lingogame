@@ -32,4 +32,8 @@ export class Word {
 
         return false;
     }
+
+    public getFirstCharacter(): string {
+        return this.text.charAt(0);
+    }
 }

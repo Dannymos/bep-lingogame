@@ -6,6 +6,7 @@ import { CharResult } from "../model/contracts/CharResult";
 import { Word } from "../../WordModule/model/entities/Word.entity";
 import { GuessResponse } from "../model/contracts/GuessResponse";
 import { CharResultStatus } from "../model/contracts/CharResultStatus";
+import { NewRoundInfo } from "../model/contracts/NewRoundInfo";
 
 export class GameService {
 
@@ -20,15 +21,36 @@ export class GameService {
         return new Game(word);
     }
 
-    public handleGuess(game: Game, guessMessage: GuessMessage): GuessResponse {
+    public async handleGuess(game: Game, guessMessage: GuessMessage): Promise<GuessResponse> {
         if(game.attempts < 5) {
             const result = this.evaluateGuess(guessMessage.guess, game.currentWord);
             game.attempts += 1;
+            if(result.correct) {
+                const newRoundInfo = await this.startNewRound(game);
+                result.newRoundInfo = newRoundInfo;
+            }
 
             return result;
         }
 
         return null;
+    }
+
+    private async startNewRound(game: Game): Promise<NewRoundInfo> {
+        try {
+            const nextWordLength = game.getNextWordLength();
+            let nextWord: Word;
+            if(game.previousWords.length === 0) {
+                nextWord = await this.wordService.getRandomWord('NL', nextWordLength);
+            } else {
+                nextWord = await this.wordService.getRandomWord('NL', nextWordLength, game.previousWords);
+            }
+
+            return game.startNewRound(nextWord);
+        } catch(exception) {
+            this.logger.error(exception);
+        }
+
     }
 
     private evaluateGuess(guess: string, currentWord: Word): GuessResponse {
@@ -59,7 +81,6 @@ export class GameService {
         const incorrectCharResults = charResults.filter(charResult => {
             return charResult.resultStatus === CharResultStatus.correctWithoutPosition || charResult.resultStatus === CharResultStatus.incorrect;
         });
-        console.log(incorrectCharResults.length > 0);
         if(incorrectCharResults.length === 0) {
             this.logger.log(`Guess: '${guess}' correct!`);
             result = new GuessResponse(true, guess, charResults);

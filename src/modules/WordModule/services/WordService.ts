@@ -1,4 +1,4 @@
-import {BadRequestException, HttpException, HttpStatus, Inject, Injectable} from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";

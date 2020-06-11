@@ -1,4 +1,4 @@
-import { HealthService } from '../../src/modules/HealthModule/services/HealthService';
+import { HealthService } from '../../../src/modules/HealthModule/services/HealthService';
 import {Test, TestingModule} from "@nestjs/testing";
 
 describe('HealthService', () => {
