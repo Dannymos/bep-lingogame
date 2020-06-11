@@ -16,6 +16,7 @@ export class Word {
     @Column({ unique: true})
     text: string;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @ManyToOne(type => Language, language => language.words)
     language: Language;
 
@@ -26,11 +27,7 @@ export class Word {
     public containsCharacterInSamePosition(char, index): boolean {
         const characters = this.text.split('');
 
-        if(characters[index] === char) {
-            return true;
-        }
-
-        return false;
+        return characters[index] === char;
     }
 
     public getFirstCharacter(): string {

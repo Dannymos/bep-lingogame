@@ -1,14 +1,12 @@
-import { WordService } from "../../../src/modules/WordModule/services/WordService";
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { TestingModule } from "@nestjs/testing";
 import { Language } from "../../../src/modules/WordModule/model/entities/Language.entity";
 import { LanguageService } from "../../../src/modules/WordModule/services/LanguageService";
 import { mockLanguageRepository } from "../../mocks/MockLanguageRepository";
-import exp = require("constants");
-import {HttpException} from "@nestjs/common";
 
-describe('WordService', () => {
+describe('LanguageService', () => {
+
     let languageService: LanguageService;
 
     beforeAll(async () => {

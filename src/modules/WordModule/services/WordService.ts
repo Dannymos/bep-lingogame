@@ -24,7 +24,7 @@ export class WordService {
         return await this.wordsRepository.save(word);
     }
 
-    public async getRandomWord(languageSlug: string,  length: number = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {
+    public async getRandomWord(languageSlug: string,  length = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {
         const textToExclude = exclude.map((word) => word.text);
         const language = await this.languageService.getLanguageBySlug(languageSlug);
         const languageId = language.id;

@@ -1,7 +1,7 @@
 import { GameSession } from "../model/GameSession";
 import { GameService } from "./GameService";
 import { Inject, Logger } from "@nestjs/common";
-import {NewRoundInfo} from "../model/contracts/NewRoundInfo";
+import { NewRoundInfo } from "../model/contracts/NewRoundInfo";
 
 export class GameSessionManager {
 

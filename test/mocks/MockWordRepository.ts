@@ -1,6 +1,5 @@
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 import { Language } from "../../src/modules/WordModule/model/entities/Language.entity";
-import { WordDto } from "../../src/modules/WordModule/model/dto/Word.dto";
 
 export const mockWordRepository = jest.fn(() => ({
     metadata: {

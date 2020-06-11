@@ -12,7 +12,6 @@ import { Inject, Logger } from "@nestjs/common";
 import { GuessMessage } from "../model/contracts/GuessMessage";
 import { GuessResponse } from "../model/contracts/GuessResponse";
 import { GameService } from "../services/GameService";
-import {NewRoundInfo} from "../model/contracts/NewRoundInfo";
 
 @WebSocketGateway()
 export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -29,7 +28,7 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer()
     server: Server;
 
-    public async handleConnection(client: Socket, data: any): Promise<void>{
+    public async handleConnection(client: Socket): Promise<void>{
         this.logger.log(`Client connected: ${client.id}`);
         const newGameInfo = await this.gameSessionManager.initializeNewGameSession(client.id);
         if(newGameInfo !== null) {
@@ -42,12 +41,6 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
     public async handleDisconnect(client: Socket): Promise<void>{
         this.logger.log(`Client disconnected: ${client.id}`);
         this.gameSessionManager.deleteGameSessionByClientId(client.id);
-    }
-
-    @SubscribeMessage('game')
-    public async game(client: Socket, @MessageBody() data: string): Promise<string> {
-        const gameSession = this.gameSessionManager.getGameSessionByClientId(data);
-        return "Game found!"
     }
 
     @SubscribeMessage('guess')
