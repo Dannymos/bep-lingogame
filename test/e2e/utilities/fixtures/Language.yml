@@ -1,0 +1,5 @@
+entity: Language
+items:
+  language0:
+    slug: "TE"
+    name: "testlanguage"
