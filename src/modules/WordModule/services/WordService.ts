@@ -11,7 +11,7 @@ export class WordService {
     @Inject(LanguageService)
     private languageService: LanguageService;
 
-    @InjectRepository(Word)
+    @InjectRepository(WordRepository)
     private wordsRepository: WordRepository;
 
     public async createFromDto(dto: WordDto): Promise<Word> {

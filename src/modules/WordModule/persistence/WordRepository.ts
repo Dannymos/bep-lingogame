@@ -1,8 +1,9 @@
 import { EntityRepository, Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";
-import { HttpException, HttpStatus } from "@nestjs/common";
+import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
 import { Language } from "../model/entities/Language.entity";
 
+@Injectable()
 @EntityRepository(Word)
 export class WordRepository extends Repository<Word> {
 

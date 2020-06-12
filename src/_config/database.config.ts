@@ -9,6 +9,9 @@ export default registerAs('database', (): TypeOrmModuleOptions => {
             database: ':memory:',
             synchronize: true,
             autoLoadEntities: true,
+            entities: [
+                "dist/**/*.entity.js"
+            ],
         };
     }
 
