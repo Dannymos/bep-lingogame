@@ -31,7 +31,7 @@ describe('Word Module (e2e)', () => {
 
     beforeEach(async () => {
         await testingUtilities.loadFixtures();
-    })
+    });
 
     it('submit new word to /word should return 2xx (POST)', () => {
         const mockRequest = {

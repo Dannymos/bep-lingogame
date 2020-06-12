@@ -6,7 +6,7 @@ import { HighscoreController } from "../../../src/modules/HighscoreModule/contro
 import { Highscore } from "../../../src/modules/HighscoreModule/model/entities/Highscore.entity";
 import { DatabaseModule } from "../../../src/modules/DatabaseModule";
 import { getRepositoryToken} from "@nestjs/typeorm";
-import { mockWordRepository } from "../../mocks/MockWordRepository";
+import { mockRepository } from "../../mocks/MockRepository";
 
 describe('HighscoreController', () => {
     let highscoreController: HighscoreController
@@ -19,7 +19,7 @@ describe('HighscoreController', () => {
             providers: [
                 HighscoreService,
                 { provide: Logger, useClass: mockLogger },
-                { provide: getRepositoryToken(Highscore), useClass: mockWordRepository },
+                { provide: getRepositoryToken(Highscore), useClass: mockRepository },
             ],
         }).compile();
 

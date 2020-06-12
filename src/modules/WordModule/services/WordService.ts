@@ -16,12 +16,7 @@ export class WordService {
 
     public async createFromDto(dto: WordDto): Promise<Word> {
         const language = await this.languageService.getLanguageBySlug(dto.language);
-        const word = this.wordsRepository.create({
-            text: dto.text,
-            language: language
-        });
-
-        return await this.wordsRepository.save(word);
+        return await this.wordsRepository.createAndSave(dto.text, language);
     }
 
     public async getRandomWord(languageSlug: string,  length = 5, exclude: Array<Word> = new Array<Word>()): Promise<Word> {

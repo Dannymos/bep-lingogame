@@ -1,6 +1,6 @@
 import { Word } from "../../src/modules/WordModule/model/entities/Word.entity";
 
-export const mockWordRepository = jest.fn(() => ({
+export const mockRepository = jest.fn(() => ({
     metadata: {
         columns: [],
         relations: [],

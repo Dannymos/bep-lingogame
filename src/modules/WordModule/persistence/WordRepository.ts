@@ -1,6 +1,7 @@
 import { EntityRepository, Repository } from "typeorm";
 import { Word } from "../model/entities/Word.entity";
 import { HttpException, HttpStatus } from "@nestjs/common";
+import { Language } from "../model/entities/Language.entity";
 
 @EntityRepository(Word)
 export class WordRepository extends Repository<Word> {
@@ -21,6 +22,14 @@ export class WordRepository extends Repository<Word> {
         }
 
         return result;
+    }
+
+    public async createAndSave(text: string, language: Language): Promise<Word> {
+        const word = this.create({
+            text: text,
+            language: language
+        });
+        return this.save(word);
     }
 
 }

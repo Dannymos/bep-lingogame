@@ -1,6 +1,11 @@
 import { IsAlpha, IsLowercase, IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 
 export class GuessMessage {
+    constructor(clientId: string, guess: string) {
+        this.clientId = clientId;
+        this.guess = guess;
+    }
+
 
     private _clientId: string;
 
