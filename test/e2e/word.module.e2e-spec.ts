@@ -1,9 +1,10 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { WordModule } from "../../src/modules/WordModule/WordModule";
-import {DatabaseModule} from "../../src/modules/DatabaseModule";
+import { DatabaseModule } from "../../src/modules/DatabaseModule";
 import { TestUtilities } from "./utilities/test.utilities";
+import { mockLogger } from "../mocks/MockLogger";
 
 describe('Word Module (e2e)', () => {
     let app: INestApplication;
@@ -16,7 +17,8 @@ describe('Word Module (e2e)', () => {
                 WordModule
             ],
             providers: [
-                TestUtilities
+                TestUtilities,
+                { provide: Logger, useClass: mockLogger }
             ]
         }).compile();
 
@@ -42,6 +44,32 @@ describe('Word Module (e2e)', () => {
             .send(mockRequest)
             .expect(201)
             .expect('{"id":1,"text":"testt","language":{"id":1,"slug":"TE","name":"testlanguage"}}');
+    });
+
+    it('submit new word to /word should return 4xx when invalid language is provided (POST)', () => {
+        const mockRequest = {
+            text: "testt",
+            language: "NLAS!a"
+        }
+
+        return request(app.getHttpServer())
+            .post('/word')
+            .send(mockRequest)
+            .expect(400)
+            .expect('{"statusCode":400,"message":["language must be shorter than or equal to 2 characters","language must be uppercase","language must contain only letters (a-zA-Z)"],"error":"Bad Request"}');
+    });
+
+    it('submit new word to /word should return 4xx when provided language does not exist (POST)', () => {
+        const mockRequest = {
+            text: "testt",
+            language: "NL"
+        }
+
+        return request(app.getHttpServer())
+            .post('/word')
+            .send(mockRequest)
+            .expect(404)
+            .expect('{"statusCode":404,"message":"No Language found!","error":"Not Found"}');
     });
 
     it('submit new INVALID word to /word should return 4xx (POST)', () => {

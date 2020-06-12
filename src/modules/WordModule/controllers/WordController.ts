@@ -4,7 +4,7 @@ import {
     HttpException,
     HttpStatus,
     Inject,
-    Logger,
+    Logger, NotFoundException,
     Post
 } from '@nestjs/common';
 import { WordDto } from "../model/dto/Word.dto";
@@ -26,10 +26,15 @@ export class WordController {
             return JSON.stringify(result);
         } catch(exception) {
             this.logger.error(exception);
-            throw new HttpException({
-                status: HttpStatus.BAD_REQUEST,
-                error: 'Something went wrong when creating a new word, try again later!'
-            }, HttpStatus.BAD_REQUEST);
+            if(exception.status === 404){
+                throw new NotFoundException(exception.response.error);
+            } else {
+                throw new HttpException({
+                    status: HttpStatus.BAD_REQUEST,
+                    error: exception.error
+                }, HttpStatus.BAD_REQUEST);
+            }
+
         }
     }
 }

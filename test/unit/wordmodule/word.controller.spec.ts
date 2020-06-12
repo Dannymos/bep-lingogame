@@ -8,7 +8,7 @@ import { HttpException, HttpStatus, Logger } from "@nestjs/common";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { mockWordRepository } from "../../mocks/MockWordRepository";
 import { mockLogger } from '../../mocks/MockLogger';
-import {mockLanguageService} from "../../mocks/MockLanguageService";
+import { mockLanguageService } from "../../mocks/MockLanguageService";
 import { LanguageService } from "../../../src/modules/WordModule/services/LanguageService";
 
 describe('WordController', () => {
