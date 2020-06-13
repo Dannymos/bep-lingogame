@@ -4,7 +4,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { TestUtilities } from "./utilities/test.utilities";
 import { AppModule } from "../../src/modules/AppModule";
 
-describe('Word Module (e2e)', () => {
+describe('WordModule (e2e)', () => {
     let app: INestApplication;
     let testingUtilities: TestUtilities;
 

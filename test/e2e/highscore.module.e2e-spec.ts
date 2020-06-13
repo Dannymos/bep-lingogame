@@ -5,7 +5,7 @@ import { HighscoreService } from "../../src/modules/HighscoreModule/services/Hig
 import { Highscore } from "../../src/modules/HighscoreModule/model/entities/Highscore.entity";
 import { AppModule } from "../../src/modules/AppModule";
 
-describe('Highscore Module (e2e)', () => {
+describe('HighscoreModule (e2e)', () => {
 
     let app: INestApplication;
 
