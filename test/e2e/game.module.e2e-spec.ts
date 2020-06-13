@@ -47,7 +47,7 @@ describe('GameModule (e2e)', () => {
             const client = io.connect(baseAddress);
             client.addEventListener('initialized', (response: any) => {
                 expect(response).toStrictEqual({"_firstCharacter": "w", "_roundNumber": 1, "_wordLength": 5});
-                client.close();
+                client.disconnect();
                 done();
             })
             client.on('connection', (response: any) => {
