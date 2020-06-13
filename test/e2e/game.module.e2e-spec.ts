@@ -40,6 +40,10 @@ describe('GameModule (e2e)', () => {
         await testingUtilities.loadFixtures();
     });
 
+    afterAll(() => {
+        app.close();
+    })
+
     describe('InitializeGame', () => {
         it('Should return NewRoundInfo when connection is made (WEBSOCKET)', (done) => {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
