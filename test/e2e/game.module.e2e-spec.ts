@@ -13,7 +13,7 @@ describe('GameModule (e2e)', () => {
     let highscoreService: HighscoreService;
 
     beforeAll(async () => {
-        jest.setTimeout(30000);
+        jest.setTimeout(10000);
         const module = await Test.createTestingModule({
             imports: [
                 AppModule,
@@ -28,12 +28,12 @@ describe('GameModule (e2e)', () => {
         await app.init();
 
 
-        const address = app.getHttpServer().listen().address();
-        baseAddress = `http://[${address.address}]:${address.port}`;
+        const address = await app.getHttpServer().listen().address();
+        baseAddress = `http://localhost:${address.port}`;
 
         testingUtilities = app.get<TestUtilities>(TestUtilities);
-        highscoreService = module.get<HighscoreService>(HighscoreService);
-        gameSessionManager = module.get<GameSessionManager>(GameSessionManager);
+        highscoreService = app.get<HighscoreService>(HighscoreService);
+        gameSessionManager = app.get<GameSessionManager>(GameSessionManager);
     });
 
     beforeEach(async () => {
