@@ -85,10 +85,10 @@ export class GameService {
         });
         if(incorrectCharResults.length === 0) {
             this.logger.log(`Guess: '${guess}' correct!`);
-            result = new GuessResponse(GuessResponseStatus.correct, guess, charResults);
+            result = new GuessResponse(GuessResponseStatus.correct, guess, charResults, GameStatus.active);
         } else {
             this.logger.log(`Guess: '${guess}' incorrect!`);
-            result = new GuessResponse(GuessResponseStatus.incorrect, guess, charResults);
+            result = new GuessResponse(GuessResponseStatus.incorrect, guess, charResults, GameStatus.active);
         }
 
         return result;

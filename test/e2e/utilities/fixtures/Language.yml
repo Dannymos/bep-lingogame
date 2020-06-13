@@ -3,3 +3,6 @@ items:
   language0:
     slug: "TE"
     name: "testlanguage"
+  language1:
+    slug: "NL"
+    name: "nederlands"

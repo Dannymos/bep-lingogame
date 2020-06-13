@@ -1,0 +1,20 @@
+entity: Word
+items:
+  word0:
+    text: "worda"
+    language: "@language1"
+  word1:
+    text: "aworda"
+    language: "@language1"
+  word2:
+    text: "aworhaa"
+    language: "@language1"
+  word3:
+    text: "aworb"
+    language: "@language1"
+  word4:
+    text: "aworc"
+    language: "@language1"
+  word5:
+    text: "awors"
+    language: "@language1"

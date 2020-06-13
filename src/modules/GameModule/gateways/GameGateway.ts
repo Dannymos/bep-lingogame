@@ -55,14 +55,14 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.logger.log(`Received guess from: ${data.clientId}, guess: ${data.guess}`);
 
         const gameSession = this.gameSessionManager.getGameSessionByClientId(data.clientId);
-        if(gameSession === null) {
+        if(gameSession === undefined) {
             this.logger.error(`Could not find game for client: ${data.clientId}`);
 
-            return new GuessResponse(GuessResponseStatus.error, data.guess, null);
+            return new GuessResponse(GuessResponseStatus.error, data.guess, null , null);
         } else if(gameSession.game.status === GameStatus.gameOver) {
             this.logger.error(`Client: ${data.clientId}'s game has ended, and is not allowed to makes guesses`);
 
-            return new GuessResponse(GuessResponseStatus.error, data.guess, null);
+            return new GuessResponse(GuessResponseStatus.error, data.guess, null, null);
         } else {
             return await this.gameService.handleGuess(gameSession.game, data);
         }
@@ -73,7 +73,7 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.logger.log(`Received highscore from: ${data.clientId}, name: ${data.name}`);
 
         const gameSession = this.gameSessionManager.getGameSessionByClientId(data.clientId);
-        if(gameSession === null) {
+        if(gameSession === undefined) {
             this.logger.error(`Could not find game for client: ${data.clientId}`);
 
             return false;

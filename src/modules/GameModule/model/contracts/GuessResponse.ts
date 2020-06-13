@@ -5,11 +5,11 @@ import { GuessResponseStatus } from "./GuessResponseStatus";
 
 export class GuessResponse {
 
-    constructor(status: GuessResponseStatus, guess: string, charResults: Array<CharResult>) {
+    constructor(status: GuessResponseStatus, guess: string, charResults: Array<CharResult>, gameStatus: GameStatus = null) {
         this._status = status;
         this._guess = guess;
         this._feedback = charResults;
-        this._gameStatus = GameStatus.active;
+        this._gameStatus = gameStatus;
     }
 
     private _status: GuessResponseStatus;

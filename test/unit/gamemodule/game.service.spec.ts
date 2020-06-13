@@ -52,7 +52,7 @@ describe('GameSessionManager', () => {
     });
 
     describe('handleGuess', () => {
-        it('should return a GuessResponse that hs the status "correct"',async () => {
+        it('should return a GuessResponse that has the status "correct"',async () => {
             const mockLanguage = new Language('TE', 'testlanguage');
             const mockWord = new Word('aaaaa', mockLanguage);
             const mockGame = new Game(mockWord);
@@ -66,7 +66,7 @@ describe('GameSessionManager', () => {
             });
         });
 
-        it('should return a GuessResponse that hs the status "incorrect"',async () => {
+        it('should return a GuessResponse that has the status "incorrect"',async () => {
             const mockLanguage = new Language('TE', 'testlanguage');
             const mockWord = new Word('bbbbb', mockLanguage);
             const mockGame = new Game(mockWord);

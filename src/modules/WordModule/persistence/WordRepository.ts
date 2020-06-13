@@ -8,8 +8,12 @@ import { Language } from "../model/entities/Language.entity";
 export class WordRepository extends Repository<Word> {
 
     public async findRandomWord(length: number, languageId: number, textToExclude?: Array<string>): Promise<Word> {
+        let sqlVarcharLengthFunc = 'CHAR_LENGTH';
+        if(process.env.NODE_ENV === 'test') {
+            sqlVarcharLengthFunc = 'LENGTH';
+        }
         const query = this.createQueryBuilder()
-            .where("CHAR_LENGTH(word.text) = :length", { length })
+            .where(`${sqlVarcharLengthFunc}(word.text) = :length`, { length })
             .andWhere("word.languageId = :languageId", { languageId });
         if(textToExclude.length > 0) {
             query.andWhere("word.text NOT IN (:...textToExclude)", { textToExclude });

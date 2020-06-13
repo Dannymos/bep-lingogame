@@ -6,7 +6,7 @@ export class Game {
 
     constructor(word: Word) {
         this._currentWord = word;
-        this._attempts = 4;
+        this._attempts = 0;
         this._previousWords = new Array<Word>();
         this._roundNumber = 1;
         this._status = GameStatus.active;
@@ -36,9 +36,6 @@ export class Game {
         return this._roundNumber;
     }
 
-    set roundNumber(value: number) {
-        this._roundNumber = value;
-    }
     get attempts(): number {
         return this._attempts;
     }
@@ -46,20 +43,15 @@ export class Game {
     set attempts(value: number) {
         this._attempts = value;
     }
+
     get previousWords(): Array<Word> {
         return this._previousWords;
     }
 
-    set previousWords(value: Array<Word>) {
-        this._previousWords = value;
-    }
     get currentWord(): Word {
         return this._currentWord;
     }
 
-    set currentWord(value: Word) {
-        this._currentWord = value;
-    }
     get status(): GameStatus {
         return this._status;
     }
@@ -85,12 +77,5 @@ export class Game {
 
     private updateScore(): number {
         return this._score + (60 - (10 * this._attempts));
-    }
-
-    public incrementAttempts(): void {
-        this.attempts += 1;
-        if(this.attempts === 5) {
-
-        }
     }
 }

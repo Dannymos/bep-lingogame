@@ -1,24 +1,24 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Word } from "../../../src/modules/WordModule/model/entities/Word.entity";
-import { Logger } from "@nestjs/common";
-import { GameService } from "../../../src/modules/GameModule/services/GameService";
-import { Game } from "../../../src/modules/GameModule/model/Game";
-import { mockLogger } from "../../mocks/MockLogger";
-import { GuessMessage } from "../../../src/modules/GameModule/model/contracts/GuessMessage";
-import { GuessResponseStatus } from "../../../src/modules/GameModule/model/contracts/GuessResponseStatus";
-import { GameSessionManager } from "../../../src/modules/GameModule/services/GameSessionManager";
-import { GameGateway } from "../../../src/modules/GameModule/gateways/GameGateway";
-import { GameSession } from "../../../src/modules/GameModule/model/GameSession";
-import { GuessResponse } from "../../../src/modules/GameModule/model/contracts/GuessResponse";
-import { GameStatus } from "../../../src/modules/GameModule/model/contracts/GameStatus";
-import { HighscoreService } from "../../../src/modules/HighscoreModule/services/HighscoreService";
-import { WordService } from "../../../src/modules/WordModule/services/WordService";
-import { getRepositoryToken } from "@nestjs/typeorm";
-import { Highscore } from "../../../src/modules/HighscoreModule/model/entities/Highscore.entity";
-import { mockRepository } from "../../mocks/MockRepository";
-import { Language } from "../../../src/modules/WordModule/model/entities/Language.entity";
-import { LanguageService } from "../../../src/modules/WordModule/services/LanguageService";
-import { HighscoreMessage } from "../../../src/modules/GameModule/model/contracts/HighscoreMessage";
+import {Test, TestingModule} from '@nestjs/testing';
+import {Word} from "../../../src/modules/WordModule/model/entities/Word.entity";
+import {Logger} from "@nestjs/common";
+import {GameService} from "../../../src/modules/GameModule/services/GameService";
+import {Game} from "../../../src/modules/GameModule/model/Game";
+import {mockLogger} from "../../mocks/MockLogger";
+import {GuessMessage} from "../../../src/modules/GameModule/model/contracts/GuessMessage";
+import {GuessResponseStatus} from "../../../src/modules/GameModule/model/contracts/GuessResponseStatus";
+import {GameSessionManager} from "../../../src/modules/GameModule/services/GameSessionManager";
+import {GameGateway} from "../../../src/modules/GameModule/gateways/GameGateway";
+import {GameSession} from "../../../src/modules/GameModule/model/GameSession";
+import {GuessResponse} from "../../../src/modules/GameModule/model/contracts/GuessResponse";
+import {GameStatus} from "../../../src/modules/GameModule/model/contracts/GameStatus";
+import {HighscoreService} from "../../../src/modules/HighscoreModule/services/HighscoreService";
+import {WordService} from "../../../src/modules/WordModule/services/WordService";
+import {getRepositoryToken} from "@nestjs/typeorm";
+import {Highscore} from "../../../src/modules/HighscoreModule/model/entities/Highscore.entity";
+import {mockRepository} from "../../mocks/MockRepository";
+import {Language} from "../../../src/modules/WordModule/model/entities/Language.entity";
+import {LanguageService} from "../../../src/modules/WordModule/services/LanguageService";
+import {HighscoreMessage} from "../../../src/modules/GameModule/model/contracts/HighscoreMessage";
 
 describe('GameSessionManager', () => {
     let gameSessionManager: GameSessionManager;
@@ -55,7 +55,7 @@ describe('GameSessionManager', () => {
             const mockWord = new Word('aword');
             const mockGame = new Game(mockWord);
             const mockGameSession = new GameSession(mockGuess.clientId, mockGame);
-            const expectedResult = new GuessResponse(GuessResponseStatus.correct, mockGuess.guess, null)
+            const expectedResult = new GuessResponse(GuessResponseStatus.correct, mockGuess.guess, null, GameStatus.active)
 
             jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return mockGameSession });
             jest.spyOn(gameService, 'handleGuess').mockImplementation(() => {
@@ -71,7 +71,7 @@ describe('GameSessionManager', () => {
             const mockGuess = new GuessMessage('aclientid', 'aguess');
             const expectedResult =  new GuessResponse(GuessResponseStatus.error, mockGuess.guess, null);
 
-            jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return null });
+            jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return undefined });
 
             const result = await gameGateway.handleGuess(mockGuess);
 
@@ -84,7 +84,7 @@ describe('GameSessionManager', () => {
             const mockGame = new Game(mockWord);
             mockGame.status = GameStatus.gameOver;
             const mockGameSession = new GameSession(mockGuess.clientId, mockGame);
-            const expectedResult =  new GuessResponse(GuessResponseStatus.error, mockGuess.guess, null);
+            const expectedResult =  new GuessResponse(GuessResponseStatus.error, mockGuess.guess, null, null);
 
             jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return mockGameSession });
 
@@ -134,7 +134,7 @@ describe('GameSessionManager', () => {
         it('should return false if no game is found',async () => {
             const mockSubmission = new HighscoreMessage('aclientid', 'Test');
 
-            jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return null });
+            jest.spyOn(gameSessionManager, 'getGameSessionByClientId').mockImplementation(() => { return undefined });
 
             const result = await gameGateway.submitHighscore(mockSubmission);
 

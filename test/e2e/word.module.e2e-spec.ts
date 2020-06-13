@@ -39,7 +39,7 @@ describe('WordModule (e2e)', () => {
             .post('/word')
             .send(mockRequest)
             .expect(201)
-            .expect('{"id":1,"text":"testt","language":{"id":1,"slug":"TE","name":"testlanguage"}}');
+            .expect('{"id":7,"text":"testt","language":{"id":1,"slug":"TE","name":"testlanguage"}}');
     });
 
     it('submit new word to /word should return 4xx when invalid language is provided (POST)', () => {
@@ -58,7 +58,7 @@ describe('WordModule (e2e)', () => {
     it('submit new word to /word should return 4xx when provided language does not exist (POST)', () => {
         const mockRequest = {
             text: "testt",
-            language: "NL"
+            language: "EN"
         }
 
         return request(app.getHttpServer())
