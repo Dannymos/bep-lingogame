@@ -6,16 +6,16 @@ import {
     WebSocketGateway,
     WebSocketServer,
 } from '@nestjs/websockets';
-import {Server, Socket} from 'socket.io';
-import {GameSessionManager} from "../services/GameSessionManager";
-import {Inject, Logger} from "@nestjs/common";
-import {GuessMessage} from "../model/contracts/GuessMessage";
-import {GuessResponse} from "../model/contracts/GuessResponse";
-import {GameService} from "../services/GameService";
-import {GameStatus} from "../model/contracts/GameStatus";
-import {GuessResponseStatus} from "../model/contracts/GuessResponseStatus";
-import {HighscoreMessage} from "../model/contracts/HighscoreMessage";
-import {HighscoreService} from "../../HighscoreModule/services/HighscoreService";
+import { Server, Socket } from 'socket.io';
+import { GameSessionManager } from "../services/GameSessionManager";
+import { Inject, Logger } from "@nestjs/common";
+import { GuessMessage } from "../model/contracts/GuessMessage";
+import { GuessResponse } from "../model/contracts/GuessResponse";
+import { GameService } from "../services/GameService";
+import { GameStatus } from "../model/contracts/GameStatus";
+import { GuessResponseStatus } from "../model/contracts/GuessResponseStatus";
+import { HighscoreMessage } from "../model/contracts/HighscoreMessage";
+import { HighscoreService } from "../../HighscoreModule/services/HighscoreService";
 
 @WebSocketGateway()
 export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -51,7 +51,7 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 
     @SubscribeMessage('guess')
-    public async guess(@MessageBody() data: GuessMessage): Promise<GuessResponse> {
+    public async handleGuess(@MessageBody() data: GuessMessage): Promise<GuessResponse> {
         this.logger.log(`Received guess from: ${data.clientId}, guess: ${data.guess}`);
 
         const gameSession = this.gameSessionManager.getGameSessionByClientId(data.clientId);
@@ -79,7 +79,6 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
             return false;
         }
         if(gameSession.game.status === GameStatus.gameOver) {
-            console.log(data);
             const highscore = await this.highscoreService.createHighscore(data.name, gameSession.game.score);
             if(highscore === null) {
                 this.logger.error(`Could not save highscore for client: ${data.clientId}`);

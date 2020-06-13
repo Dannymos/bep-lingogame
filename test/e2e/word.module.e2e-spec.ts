@@ -1,10 +1,8 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
-import { WordModule } from "../../src/modules/WordModule/WordModule";
-import { DatabaseModule } from "../../src/modules/DatabaseModule";
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { TestUtilities } from "./utilities/test.utilities";
-import { mockLogger } from "../mocks/MockLogger";
+import { AppModule } from "../../src/modules/AppModule";
 
 describe('Word Module (e2e)', () => {
     let app: INestApplication;
@@ -13,12 +11,10 @@ describe('Word Module (e2e)', () => {
     beforeAll(async () => {
         const moduleFixture = await Test.createTestingModule({
             imports: [
-                DatabaseModule,
-                WordModule
+                AppModule
             ],
             providers: [
-                TestUtilities,
-                { provide: Logger, useClass: mockLogger }
+                TestUtilities
             ]
         }).compile();
 

@@ -33,7 +33,7 @@ export class GameService {
         else if(result.status === GuessResponseStatus.correct) {
             result.newRoundInfo = await this.startNewRound(game);
         }
-        console.log(result);
+
         return result;
     }
 

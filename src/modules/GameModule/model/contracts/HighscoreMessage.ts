@@ -1,6 +1,11 @@
 import { IsAlpha,  IsNotEmpty, IsString } from "class-validator";
 
 export class HighscoreMessage {
+    constructor(clientId: string, name: string) {
+        this.clientId = clientId;
+        this.name = name;
+    }
+
 
     private _clientId: string;
 

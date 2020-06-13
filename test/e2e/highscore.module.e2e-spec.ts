@@ -1,10 +1,9 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { HighscoreModule} from "../../src/modules/HighscoreModule/HighscoreModule";
 import { HighscoreService } from "../../src/modules/HighscoreModule/services/HighscoreService";
-import {Highscore} from "../../src/modules/HighscoreModule/model/entities/Highscore.entity";
-import { DatabaseModule } from "../../src/modules/DatabaseModule";
+import { Highscore } from "../../src/modules/HighscoreModule/model/entities/Highscore.entity";
+import { AppModule } from "../../src/modules/AppModule";
 
 describe('Highscore Module (e2e)', () => {
 
@@ -16,7 +15,9 @@ describe('Highscore Module (e2e)', () => {
 
     beforeAll(async () => {
         const module = await Test.createTestingModule({
-            imports: [DatabaseModule, HighscoreModule],
+            imports: [
+                AppModule
+            ],
         }).compile();
 
         highscoreService = module.get<HighscoreService>(HighscoreService);
