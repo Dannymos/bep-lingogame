@@ -157,7 +157,7 @@ describe('GameModule (e2e)', () => {
             const client = io.connect(baseAddress);
             client.on('initialized', () => {
 
-                const mockGuess = {
+                let mockGuess = {
                     clientId: client.id,
                     guess: "worda"
                 }
@@ -168,27 +168,27 @@ describe('GameModule (e2e)', () => {
                     expect(response._newRoundInfo._roundNumber).toBe(2);
                     expect(response._newRoundInfo._wordLength).toBe(6);
 
-                    const mockGuess = {
+                    mockGuess = {
                         clientId: client.id,
                         guess: "aworda"
                     }
 
-                    client.emit('guess', mockGuess, (response: any) => {
-                        expect(response._status).toBe("correct");
-                        expect(response._gameStatus).toBe("Active");
-                        expect(response._newRoundInfo._roundNumber).toBe(3);
-                        expect(response._newRoundInfo._wordLength).toBe(7);
+                    client.emit('guess', mockGuess, (secondResponse: any) => {
+                        expect(secondResponse._status).toBe("correct");
+                        expect(secondResponse._gameStatus).toBe("Active");
+                        expect(secondResponse._newRoundInfo._roundNumber).toBe(3);
+                        expect(secondResponse._newRoundInfo._wordLength).toBe(7);
 
-                        const mockGuess = {
+                        mockGuess = {
                             clientId: client.id,
                             guess: "aworhaa"
                         }
 
-                        client.emit('guess', mockGuess, (response: any) => {
-                            expect(response._status).toBe("correct");
-                            expect(response._gameStatus).toBe("Active");
-                            expect(response._newRoundInfo._roundNumber).toBe(4);
-                            expect(response._newRoundInfo._wordLength).toBe(5);
+                        client.emit('guess', mockGuess, (thirdResponse: any) => {
+                            expect(thirdResponse._status).toBe("correct");
+                            expect(thirdResponse._gameStatus).toBe("Active");
+                            expect(thirdResponse._newRoundInfo._roundNumber).toBe(4);
+                            expect(thirdResponse._newRoundInfo._wordLength).toBe(5);
                             client.disconnect();
                             done();
                         });

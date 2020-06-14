@@ -4,8 +4,13 @@
 [![Build Status](https://travis-ci.com/Dannymos/bep-lingogame.svg?token=gpoU2vNdexLmEGF8p9c4&branch=master)](https://travis-ci.com/Dannymos/bep-lingogame)
 [![Coverage Status](https://coveralls.io/repos/github/Dannymos/bep-lingogame/badge.svg?t=WsslOf)](https://coveralls.io/github/Dannymos/bep-lingogame)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-[![License](https://img.shields.io/badge/License-MIT-success)](https://img.shields.io/badge/License-MIT-success)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=alert_status)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=bugs)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=code_smells)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=security_rating)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
 [![Hotel](https://img.shields.io/badge/Hotel-Trivago-success)](https://img.shields.io/badge/Hotel-Trivago-success)
 
 ## Description

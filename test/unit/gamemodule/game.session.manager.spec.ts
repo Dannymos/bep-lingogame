@@ -71,7 +71,7 @@ describe('GameSessionManager', () => {
             const spy = jest.spyOn(gameSessionManager, 'deleteGameSessionByClientId');
 
             await gameSessionManager.initializeNewGameSession(mockClientId);
-            await gameSessionManager.deleteGameSessionByClientId(mockClientId);
+            gameSessionManager.deleteGameSessionByClientId(mockClientId);
             const result = gameSessionManager.getGameSessionByClientId(mockClientId);
 
             expect(result).toBeUndefined();

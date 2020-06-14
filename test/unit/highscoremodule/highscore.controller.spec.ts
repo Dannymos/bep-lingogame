@@ -43,10 +43,6 @@ describe('HighscoreController', () => {
 
     describe('getHighscores', () => {
         it('should throw NotFoundException', async () => {
-            const mockHighscore = new Highscore('test', 50);
-            const mockResult = new Array<Highscore>();
-            mockResult.push(mockHighscore);
-
             jest.spyOn(highscoreService, 'getAllHighscores').mockImplementation(() => { throw new NotFoundException(); });
 
             try {
