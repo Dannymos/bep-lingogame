@@ -21,6 +21,8 @@ And used [Nest.js TypeScript starter](https://github.com/nestjs/typescript-start
 
 Requires MYSQL to be installed and server to be running.
 
+Sonarcloud analysis: https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame
+
 ## Installation
 
 ```bash
