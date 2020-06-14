@@ -290,8 +290,8 @@ describe('GameModule (e2e)', () => {
                                         name: "test"
                                     }
 
-                                    client.emit('highscore', mockHighscore, (response: any) => {
-                                        expect(response).toBe(true);
+                                    client.emit('highscore', mockHighscore, (secondResponse: any) => {
+                                        expect(secondResponse).toBe(true);
                                         expect(spy).toHaveBeenCalled();
                                         client.disconnect();
                                         done();
