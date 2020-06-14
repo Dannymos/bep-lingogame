@@ -31,7 +31,7 @@ $ npm install
 
 ## Running the app
 
-Configure the .env file
+Configure the .env file first
 
 ```bash
 # development
