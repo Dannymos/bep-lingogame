@@ -8,7 +8,7 @@ import { DatabaseModule } from "../../../src/modules/DatabaseModule";
 import { getRepositoryToken} from "@nestjs/typeorm";
 import { mockRepository } from "../../mocks/MockRepository";
 
-describe('HighscoreController', () => {
+describe('HighscoreService', () => {
     let highscoreController: HighscoreController
     let highscoreService: HighscoreService
 

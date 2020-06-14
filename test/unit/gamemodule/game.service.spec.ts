@@ -15,7 +15,7 @@ import {GuessResponseStatus} from "../../../src/modules/GameModule/model/contrac
 import {CharResultStatus} from "../../../src/modules/GameModule/model/contracts/CharResultStatus";
 import {NewRoundInfo} from "../../../src/modules/GameModule/model/contracts/NewRoundInfo";
 
-describe('GameSessionManager', () => {
+describe('GameService', () => {
     let wordService: WordService;
     let gameService: GameService;
 

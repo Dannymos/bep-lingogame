@@ -20,7 +20,7 @@ import {Language} from "../../../src/modules/WordModule/model/entities/Language.
 import {LanguageService} from "../../../src/modules/WordModule/services/LanguageService";
 import {HighscoreMessage} from "../../../src/modules/GameModule/model/contracts/HighscoreMessage";
 
-describe('GameSessionManager', () => {
+describe('GameGateway', () => {
     let gameSessionManager: GameSessionManager;
     let gameService: GameService;
     let highscoreService: HighscoreService;
