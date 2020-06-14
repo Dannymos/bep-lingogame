@@ -40,7 +40,6 @@
     "rxjs": "^6.5.5",
     "sqlite": "^4.0.10",
     "sqlite3": "^4.2.0",
-    "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
