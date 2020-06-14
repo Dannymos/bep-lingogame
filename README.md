@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Dannymos/bep-lingogame/badge.svg?t=WsslOf)](https://coveralls.io/github/Dannymos/bep-lingogame)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License](https://img.shields.io/badge/License-MIT-success)](https://img.shields.io/badge/License-MIT-success)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Dannymos_bep-lingogame&metric=alert_status)](https://sonarcloud.io/dashboard?id=Dannymos_bep-lingogame)
 [![Hotel](https://img.shields.io/badge/Hotel-Trivago-success)](https://img.shields.io/badge/Hotel-Trivago-success)
 
 ## Description
