@@ -18,6 +18,9 @@
 This project makes use of the [Nest.js](https://nestjs.com/) framework.
 A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
 And used [Nest.js TypeScript starter](https://github.com/nestjs/typescript-starter) as a boiler plate.
+
+Requires MYSQL to be installed and server to be running.
+
 ## Installation
 
 ```bash
@@ -25,6 +28,8 @@ $ npm install
 ```
 
 ## Running the app
+
+Configure the .env file
 
 ```bash
 # development
